@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728153936) do
+ActiveRecord::Schema.define(version: 20140728192610) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -19,13 +19,15 @@ ActiveRecord::Schema.define(version: 20140728153936) do
     t.text     "contents"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "like",        default: 0
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
-  create_table "likers", force: true do |t|
-    t.integer  "answer_like"
+  create_table "likeits", force: true do |t|
+    t.integer  "answer_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

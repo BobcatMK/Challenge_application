@@ -5,6 +5,18 @@
     = l(answer.created_at, format: :long)
     '  by
     = link_to answer.user, user_path(answer.user)
-  div
-  	| 
+  div = "Number of likes: #{answer.like}" 
+  
+  /div = @question.inspect
+  /div = answer.inspect
+  
+  - @all_likeit = Likeit.all.where(:answer_id => answer.id)
+  /div = @all_likeit.inspect
+  
+  - if @all_likeit.any? { |item| item.user_id == current_user.id }
+  		div You already like it
+  - elsif @all_likeit.all { |item| item.user_id != current_user.id }
+  		div = link_to("LIKE IT", adding_likes_path(answer.id,answer.like,current_user.id))
+  
+  
 div ----------------------

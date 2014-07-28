@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LikerTest < ActiveSupport::TestCase
+class LikeitTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

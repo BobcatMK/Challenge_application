@@ -9,8 +9,10 @@ class QuestionsController < ApplicationController
   def show
     if params[:contents]
       @answer = Answer.new(answerr_params)
+      #@likeit = Likeit.new
     else
       @answer = Answer.new
+      #@likeit = Likeit.new
     end
   end
 

@@ -1,0 +1,298 @@
+<!-- Jakis takis multiline do dziwny , wszystko co jest wciete bardziej niz pipe nalezy do elementu ktory poprzedza pipe. -->
+
+	p	
+		|	This is a test of the text block.
+				sdfasdf
+					asdf
+						sadf
+	h1 AHMED THE DEAD TERRORIST
+	div 
+		|
+			ahmed martwy terrorysta!
+			jaka zabawe lubi terrorysta? BOMBOWA! hahaha ale smieszne...
+	h6
+		' alibabaaaaaaaaaaaaa zaraz sie wysadzi
+			p allah kaboom
+		p allah kaboom
+	h1	
+		' alibaba sie wysadzi!
+	
+<!-- wykorzystanie - jako <% %> -->	
+
+	- arti = ["mucha","dmucha","nie","porucha"]
+	
+	- arti.each do |a| 
+		| #{a + " "}	
+	
+	- test = []
+
+<!-- wykorzystanie = jako <%= %> -->
+	
+	h2
+		- if test.empty?
+			p = "test jest pusty"
+		- else
+			p = "test nie jest pusty"
+			
+	h2
+		- if test.empty?
+			p test jest pusty
+		- else
+			p test nie jest pusty
+	
+	h2 
+		=< "This is the end<br>".html_safe
+		=> raw("My beautiful friend<br>")
+		=' raw("Natural disaster<br />")
+		= "your arse is tight!"
+		- "muahhahah you can't see me!"
+		
+<!-- wykorzystanie == jako <%= .html_safe %> -->
+
+	p
+		== "<br>yolo"
+		==< "you <br> are <br> empty <br>"
+		==' "you <br> like <br> me"
+		==> "fucking shit mofo!"
+
+<!-- tworzenie komentarzy w slimie -->
+
+	p
+		/ hello I'm fucking comment - code comment I guess
+			hello I'm fucking comment - code comment I guess
+		/! Yo bitches! I'm yoloyolo html comment
+			Yo bitches! I'm yoloyolo html comment
+		/[if IE] Get a better browser yolo
+	div alalalalal! boom!
+
+<!-- doctype tag - sprawdzic funkcjonalnosc na doc slima , tam jest wszystko opisane -->
+
+	/! doctype html
+	
+	<!-- tagi mozna zamykac samemu , przyklad ponizej -->
+	
+	img src="one.jpg"/
+
+<!-- trailing and leading whitespace < and > -->
+
+	/Mozesz zmusic slima do dodania z tylu whitespace
+	br
+	a> href="http://www.bing.pl" BING (nie Carmella)
+	br
+	/ Mozesz zmusic slima do dodania whitespace z przodu
+	a< href="http://www.youtube.com" Jutup
+	br
+	/ Mozesz zmusic slima do dodania whistespace i z przodu i z tylu
+	a<> href="http://www.guildwars2.com" GW2
+
+<!-- Inline tags - jezeli chcemy byc bardziej kompaktowi -->
+	
+	ul
+		li: a href="#" Link1
+		li: a href="#" Link2
+	ul
+		li
+			a href="#" Link3
+		li
+			a href="#" Link4
+	ul 
+		li: a href="#" Link5
+		li a href="#" Link6
+	
+<!-- Powtorka z text content -->
+
+	h4 id="bombowo" Welcome to my site.
+	
+	h4 id="bombo"
+		| Welcome to my site.	
+	
+	br
+	
+	div
+		h2 class="abc" = "hello, hell no!"
+	 
+	h2 
+		p class="abc" = "hello,hello hell no!"
+	
+<!-- Uzywanie atrybutow -->
+
+	a href="#" title="Slim jim" go to the slim jim hp
+
+<!-- Attributes wrapper -->
+
+	/ If a delimiter makes the syntax more readable for you, you can use the characters {...}, (...), [...] to wrap the attributes. You can configure these symbols (See option :attr_delims).
+	
+	- page_logo = "2"
+	- page_tagline = "4334"
+	
+	body
+	  h1(id="logo") = page_logo
+	  h2[id="tagline" class="small tagline"] = page_tagline
+	
+	/ If you wrap the attributes, you can spread them across multiple lines:
+	
+	h2[id="tagline"
+	   class="small tagline"] = page_tagline
+	
+	/ You may use spaces around the wrappers and assignments:
+	
+	h1 id = "logo" = page_logo
+	h2 [ id = "tagline" ] = page_tagline
+
+<!-- Quoted attributes -->
+
+	/ Mozna uzywać interpolacji w quoted stringach
+	- lynk = "www.bing.pl"
+	a href="http://#{lynk}" go to #{lynk}
+	
+	/ Domyslnie wartosc atrybutu jest escaped, uzywamy == jezeli chcemy wylaczyc escape'a.
+	br
+	a title="&amp;" asdf
+	br
+	a title=="&amp;" asdf
+
+	/ Mozesz lamac qouted atrybuty przy pomocy backslasha
+	br
+	a title="extreamly long title just to make you mad\
+		     another hero another mindless crime" in the pantomime
+
+<!-- Ruby - atrybuty -->
+
+	/ Wartosci atrybutow sa escaped domyslnie, jezeli chcesz to wylaczyc uzywasz ==
+	/ a href=action_path(:start)
+	
+	/ Mozesz rowniez lamac atrybuty przy uzyciu backslasha \ albo trailingu.
+	
+<!-- Boolean atrybuty -->
+
+	/Jezeli uzywamy boolean wartosci , to nie musimy dawac cudzyslowow
+	br
+	input type="text" disabled="disabled"
+	br
+	input type="text" disabled=true
+	
+<!-- Attribute merging -->
+
+ 	/ In the default configuration merging is done for class attributes with the white space as delimiter.
+ 	br
+ 	a.menu class="highlight" href="http://slim-lang.com/" slim-lang.com
+
+	/ You can also use an Array as attribute value and the array elements will be merged using the delimiter.
+	br
+	a class=["menu","highlight"] href="http://www.bing.pl" BING link
+	br
+	a class=:menu,:hightlight href="http://www.bing.pl" BING link
+	br
+	
+<!-- Splat attributes * -->
+
+	/ Splat umozliwia nam zamiane hasha na odpowedniki par atrybut/wartosc
+	.card*{"data-url"=>"www/www/www","data-id"=>"1234"} = "aaaa boom"
+	
+	/ Mozna to stosowac rowniez dla metod albo zmiennych obiektowych ktore zwracaja hasha:
+	
+	ruby:
+		def method_which_returns_hash
+			return {"class"=>"ali"}
+		end	
+		
+	- @hash_instance_variable = {"id"=>"test"}
+	
+	.card *method_which_returns_hash = "aaaaa"
+	.card *@hash_instance_variable = "bbbbb"
+	
+	/ The hash attributes which support attribute merging (see Slim option :merge_attrs) can be given as an Array
+	br
+	.first *{:class => [:second,:third]} Text
+	
+<!-- Dynamic Tags -->
+
+	/ruby:
+	/  def a_unless_current
+	/    @page_current ? {:tag => 'span'} : {:tag => 'a', :href => 'http://slim-lang.com/'}
+	/  end
+	  
+	/- @page_current = true
+	/*a_unless_current Link
+	/- @page_current = false
+	/*a_unless_current Link
+		
+<!-- Shortcuts -->
+	
+	/ You can define custom tag shortcuts by setting the option :shortcut.
+	
+	- Slim::Engine.set_default_options :shortcut => {'c' => {:tag => 'container'}, '#' => {:attr => 'id'}, '.' => {:attr => 'class'} }
+	br
+	c.walisieswiat TEXXXXT
+	
+	/Attribute shortcuts
+
+	/You can define custom shortcuts (Similar to # for id and . for class).
+
+	/In this example we add & to create a shortcut for the input elements with type attribute.
+
+    /Slim::Engine.set_default_options :shortcut => {'&' => {:tag => 'input', :attr => 'type'}, '#' => {:attr => 'id'}, '.' => {:attr => 'class'}}
+
+    /We can use it in Slim code like this
+
+    /&text name="user"
+    /&password name="pw"
+    /&submit
+
+	/which renders to
+
+	/<input type="text" name="user" />
+	/<input type="password" name="pw" />
+	/<input type="submit" />
+
+	/In another example we add @ to create a shortcut for the role attribute.
+
+	/Slim::Engine.set_default_options :shortcut => {'@' => {:attr => 'role'}, '#' => {:attr => 'id'}, '.' => {:attr => 'class'}}
+
+	/We can use it in Slim code like this
+
+	/.person@admin = person.name
+
+	/which renders to
+
+	/<div class="person" role="admin">Daniel</div>
+	
+	/You can also set multiple attributes at once using one shortcut.
+
+	/Slim::Engine.set_default_options :shortcut => {'@' => {:attr => %w(data-role role)}}
+
+	/We can use it in Slim code like this
+
+	/.person@admin = person.name
+
+	/which renders to
+
+	/<div class="person" role="admin" data-role="admin">Daniel</div>
+
+<!-- ID shortcut # and class shortcut. -->
+
+	/Similarly to Haml, you can specify the id and class attributes in the following shortcut form
+
+	/body
+	  /h1#headline
+	    /= page_headline
+	  /h2#tagline.small.tagline
+	    /= page_tagline
+	  /.content
+	    /= show_content
+	
+	/This is the same as
+	
+	/body
+	  /h1 id="headline"
+	    /= page_headline
+	  /h2 id="tagline" class="small tagline"
+	    /= page_tagline
+	  /div class="content"
+	    /= show_content
+
+
+
+
+
+

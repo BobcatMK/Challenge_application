@@ -4,13 +4,14 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
-    @answer.user = current_user
-    @answer.question = @question
-
+    @answer.user_id = current_user.id
+    @answer.question_id = @question.id
+    
     if @answer.save
       redirect_to question_path(@question), notice: "Answer was successfully created."
     else
-      redirect_to question_path(@question), alert: "There was an error when adding answer."
+      #redirect_to question_path(@question), alert: "There was an error when adding answer."
+      render(:template => "questions/show", alert: "There was an error when adding answer.")
     end
   end
 

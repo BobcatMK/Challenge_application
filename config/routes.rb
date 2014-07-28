@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show]
+  
+  #USERS CONTROLLER MY ROUTES
+  get "learning_slim", to: "users#learning_slim", as: :learning_slim
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

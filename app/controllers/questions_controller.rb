@@ -7,7 +7,11 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answer = Answer.new
+    if params[:contents]
+      @answer = Answer.new(answerr_params)
+    else
+      @answer = Answer.new
+    end
   end
 
   def new
@@ -50,5 +54,9 @@ class QuestionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
       params.require(:question).permit(:title, :contents)
+    end
+    
+    def answerr_params
+      params.require(:answer).permit(:contents)
     end
 end

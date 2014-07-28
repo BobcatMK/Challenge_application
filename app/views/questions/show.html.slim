@@ -1,30 +1,37 @@
 .question id="question-#{@question.id}"
   h2= @question.title
 
-  = render "details", question: @question
+  = render "questions/details", question: @question
 
   p
     = @question.contents
-
-  .links
-    = link_to 'Edit', edit_question_path(@question)
-    '  |
-    = link_to 'Delete', question_path(@question, method: :delete)
+    
+  -if current_user.id == @question.user_id
+	  .links
+	    = link_to 'Edit', edit_question_path(@question)
+	    '  |
+	    = link_to 'Delete', question_path(@question, method: :delete)
 
   h3 Answers
 
   - if @question.answers.any?
-    = render @question.answers
+	 = render @question.answers
   - else
     '  There are no answers to this question.
 
   h3 Add answer
+  
+  - if @answer.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@answer.errors.count, "error")} prohibited this question from being saved:"
+      ul
+        - @answer.errors.full_messages.each do |message|
+          li = message
 
-  = form_for [@question, @answer] do |f|
+  = form_for([@question, @answer])  do |f|
 
     .field
       = f.label :contents
       = f.text_area :contents
 
     .actions= f.submit 'Save'
-

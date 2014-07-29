@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #USERS CONTROLLER MY ROUTES
   get "learning_slim", to: "users#learning_slim", as: :learning_slim
   get "adding_likes/(:id)/(:like)/(:current_user_id)", to: "answers#adding_likes", as: :adding_likes
-
+  get "add_accept/(:answer_id)", to: "answers#accept", as: :accept
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

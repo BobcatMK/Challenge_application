@@ -9,14 +9,28 @@
   
   /div = @question.inspect
   /div = answer.inspect
+  /= @question.answers.inspect	
   
   - @all_likeit = Likeit.all.where(:answer_id => answer.id)
   /div = @all_likeit.inspect
   
   - if @all_likeit.any? { |item| item.user_id == current_user.id }
   		div You already like it
-  - elsif @all_likeit.all { |item| item.user_id != current_user.id }
-  		div = link_to("LIKE IT", adding_likes_path(answer.id,answer.like,current_user.id))
+  - else @all_likeit.all? { |item| item.user_id != current_user.id }
+  		div = link_to("LIKE IT", adding_likes_path(answer.id,answer.like,current_user.id))  
   
+  - if current_user.id == @question.user_id
+  	- if @all_answers.all? { |ans| ans.accepted == 0 }
+  		= link_to("ACCEPT",accept_path(answer.id))
+  	- elsif answer.accepted == 0
+  		div You accepted different answer
+  	- elsif answer.accepted == 1
+  		div ACCEPTED
+  		
+  - if current_user.id != @question.user_id
+  	- if answer.accepted == 0
+  		div not accepted
+  	- elsif answer.accepted == 1
+  		div ACCEPTED
   
 div ----------------------

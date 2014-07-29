@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_question, except: [:adding_likes]
+  before_action :set_question, except: [:adding_likes,:accept]
 
   def create
     @answer = Answer.new(answer_params)
@@ -22,6 +22,13 @@ class AnswersController < ApplicationController
     @likeit.save
     
     redirect_to question_path(@odp.question_id)
+  end
+  
+  def accept
+    @find_answer = Answer.find(params[:answer_id])
+    @find_answer.update(:accepted => 1)
+    
+    redirect_to question_path(@find_answer.question_id)
   end
   
   private

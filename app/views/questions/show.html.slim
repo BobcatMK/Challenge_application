@@ -7,12 +7,13 @@
     = @question.contents
     
   -if current_user.id == @question.user_id
+  	  -@all_answers = @question.answers
 	  .links
 	    = link_to 'Edit', edit_question_path(@question)
 	    '  |
 	    = link_to 'Delete', question_path(@question, method: :delete)
 
-  h3 Answers
+  h3 Answers	
 
   - if @question.answers.any?
 	 = render @question.answers
@@ -28,10 +29,14 @@
         - @answer.errors.full_messages.each do |message|
           li = message
 
-  = form_for([@question, @answer])  do |f|
+  - if @question.answers.all? { |item| item.accepted == 0 }
+	  = form_for([@question, @answer])  do |f|
+	
+	    .field
+	      = f.label :contents
+	      = f.text_area :contents
 
-    .field
-      = f.label :contents
-      = f.text_area :contents
-
-    .actions= f.submit 'Save'
+    	.actions= f.submit 'Save'
+    	
+  - if @question.answers.any? { |item| item.accepted == 1 }
+   		div This question was already fully answered.

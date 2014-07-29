@@ -17,9 +17,14 @@ class AnswersController < ApplicationController
 
   def adding_likes
     @odp = Answer.find(params[:id])
+    @user_id = @odp.user_id
     @odp.update(:like => (params[:like].to_i + 1))
     @likeit = Likeit.new(:answer_id => params[:id],:user_id => params[:current_user_id])
     @likeit.save
+    
+    @user = User.find(@user_id)
+    @user_points = @user.points
+    @user.update(:points => @user_points + 5 )
     
     redirect_to question_path(@odp.question_id)
   end
@@ -28,13 +33,19 @@ class AnswersController < ApplicationController
     @find_answer = Answer.find(params[:answer_id])
     @find_answer.update(:accepted => 1)
     
+    @user_id = @find_answer.user_id
+    @user = User.find(@user_id)
+    @user_points = @user.points
+    @user.update(:points => @user_points + 25)
+    
+    
     redirect_to question_path(@find_answer.question_id)
   end
   
   private
 
     def set_question
-        @question = Question.find(params[:question_id])
+      @question = Question.find(params[:question_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

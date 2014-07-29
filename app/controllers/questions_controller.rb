@@ -9,10 +9,8 @@ class QuestionsController < ApplicationController
   def show
     if params[:contents]
       @answer = Answer.new(answerr_params)
-      #@likeit = Likeit.new
     else
       @answer = Answer.new
-      #@likeit = Likeit.new
     end
   end
 
@@ -26,6 +24,9 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user = current_user
+    
+    @points = current_user.points
+    current_user.update(:points => @points - 10)
 
     if @question.save
       redirect_to @question, notice: 'Question was successfully created.'

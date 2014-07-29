@@ -4,7 +4,7 @@
     '  Answered on
     = l(answer.created_at, format: :long)
     '  by
-    = link_to answer.user, user_path(answer.user)
+    = link_to answer.user.name, user_path(answer.user)
   div = "Number of likes: #{answer.like}" 
   
   /div = @question.inspect
@@ -32,5 +32,4 @@
   		div not accepted
   	- elsif answer.accepted == 1
   		div ACCEPTED
-  
 div ----------------------

@@ -9,7 +9,8 @@ class AnswersController < ApplicationController
     @question_owner = User.find(@question.user_id)
     
     if @answer.save
-      UserMailer.send_email(@question_owner,current_user,@answer,@question).deliver
+      LazyDoer.perform_async(@question_owner.email,current_user.name,@answer.contents,@question.title)
+      #DLA MAILERA BEZ SIDEKIQ UserMailer.send_email(@question_owner,current_user,@answer,@question).deliver
       redirect_to question_path(@question), notice: "Answer was successfully created."
     else    
       #redirect_to question_path(@question), alert: "There was an error when adding answer."
@@ -42,7 +43,8 @@ class AnswersController < ApplicationController
     @user_points = @user.points
     @user.update(:points => @user_points + 25)
     
-    UserMailer.accepted_email(@user,@find_answer,@question).deliver
+    LazyDoertwo.perform_async(@user.email,@find_answer.contents,@question.title)
+    #UserMailer.accepted_email(@user,@find_answer,@question).deliver
     redirect_to question_path(@find_answer.question_id)
   end
   

@@ -3,13 +3,13 @@ html
 	head
 		meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
 	body
-		h1 Your question #{@question.title} has been answered
+		h1 Your question #{@question_title} has been answered
 		p 	
 			|
-				Answered by #{@cur_user.name}
+				Answered by #{@cur_user_name}
 				<br />
 				The answer content is:
 				<br />
-				#{@answer.contents}
+				#{@answer_contents}
 		
 		p Accept or like the answer if it was useful for you.

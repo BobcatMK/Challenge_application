@@ -5,6 +5,7 @@ gem 'rails', '4.1.1'
 gem 'sqlite3'
 gem 'devise'
 gem 'paperclip', "~> 4.1"
+gem 'sidekiq'
 
 # frontend
 gem 'slim-rails'

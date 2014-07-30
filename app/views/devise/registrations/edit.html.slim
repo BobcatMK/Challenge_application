@@ -34,6 +34,9 @@ h2 Edit Profile
 	= image_tag(current_user.avatar.url(:small))
 	br
 	b = "File name #{current_user.avatar_file_name}"
+	
+  div
+  	= image_tag(current_user.superstarbadge.url)
 
   div
     = f.submit "Update"

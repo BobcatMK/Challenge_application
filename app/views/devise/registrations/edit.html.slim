@@ -30,14 +30,23 @@ h2 Edit Profile
   .field
   	= f.label :avatar
   	= f.file_field :avatar
-  div    
-	= image_tag(current_user.avatar.url(:small))
-	br
-	b = "File name #{current_user.avatar_file_name}"
-	
-  div
-  	= image_tag(current_user.superstarbadge.url)
+  	
+  - if current_user.avatar_file_name.to_s.length > 0
+	  div    
+	  	b = "File name #{current_user.avatar_file_name}"
+	  	br
+		= image_tag(current_user.avatar.url(:small))
+		br
+  - else
+  	  div You don't have a profile picture
+  	  br
 
+  - if current_user.points >= 1000
+	  	div CONGRATULATIONS - YOU HAVE EARNED SUPERSTAR BADGE!
+	  	div You have at least 1000 points
+	  	= image_tag("superbadge.jpeg",:alt => "picture",size: "100x100")
+  	
+  	
   div
     = f.submit "Update"
 

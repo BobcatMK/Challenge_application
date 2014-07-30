@@ -2,6 +2,11 @@
   h2= @user.name
   
   div = image_tag(@user.avatar.url(:small))
+  
+  - if @user.points >= 1000
+	  	div THIS USER HAS SUPERSTAR BADGE!
+	  	div 1000 points or more!
+	  	= image_tag("superbadge.jpeg",:alt => "picture",size: "100x100")
 
   .questions
     h3 Questions

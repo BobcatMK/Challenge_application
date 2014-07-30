@@ -1,0 +1,15 @@
+doctype html
+html
+	head
+		meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+	body
+		h1 Your question #{@question.title} has been answered
+		p 	
+			|
+				Answered by #{@cur_user.name}
+				<br />
+				The answer content is:
+				<br />
+				#{@answer.contents}
+		
+		p Accept or like the answer if it was useful for you.

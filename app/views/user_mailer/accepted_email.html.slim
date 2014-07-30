@@ -1,0 +1,17 @@
+doctype html
+html
+	head
+		meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+	body
+		h1 Your answer to question #{@question.title} has been accepted
+		p 	
+			|
+				Your answer with content of:
+				<br />
+				<br />
+				#{@answer.contents}
+				<br />
+				<br />
+				Was accepted, you are awarded with 25 points.
+		
+		p Thank you for helping other programmers, we wouldn't be able to make it without your knowledge!

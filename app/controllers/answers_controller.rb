@@ -6,8 +6,10 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.user_id = current_user.id
     @answer.question_id = @question.id
+    @question_owner = User.find(@question.user_id)
     
     if @answer.save
+      UserMailer.send_email(@question_owner,current_user,@answer,@question).deliver
       redirect_to question_path(@question), notice: "Answer was successfully created."
     else    
       #redirect_to question_path(@question), alert: "There was an error when adding answer."
@@ -33,12 +35,14 @@ class AnswersController < ApplicationController
     @find_answer = Answer.find(params[:answer_id])
     @find_answer.update(:accepted => 1)
     
+    @question = Question.find(@find_answer.question_id)
+    
     @user_id = @find_answer.user_id
     @user = User.find(@user_id)
     @user_points = @user.points
     @user.update(:points => @user_points + 25)
     
-    
+    UserMailer.accepted_email(@user,@find_answer,@question).deliver
     redirect_to question_path(@find_answer.question_id)
   end
   

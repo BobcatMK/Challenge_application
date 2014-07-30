@@ -1,0 +1,10 @@
+br
+
+- @sorted = @all_users.sort_by { |person| person.points }
+- @sorted_reverse = @sorted.reverse
+
+table style="border-collapse: collapse; border: 1px solid black;"
+	- @sorted_reverse.each do |person|
+		tr
+			td style="border: 1px solid black; width: 200px;" = "Name: #{person.name}"
+			td style="border: 1px solid black; width: 200px;" = "Points: #{person.points}"

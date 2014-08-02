@@ -7,6 +7,7 @@ gem 'devise'
 gem 'paperclip', "~> 4.1"
 gem 'sidekiq'
 gem 'redcarpet'
+gem 'omniauth-github'
 
 # frontend
 gem 'slim-rails'

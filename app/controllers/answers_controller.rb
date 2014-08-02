@@ -29,7 +29,16 @@ class AnswersController < ApplicationController
     @user_points = @user.points
     @user.update(:points => @user_points + 5 )
     
-    redirect_to question_path(@odp.question_id)
+    # FOR JQUERY
+    @odp2 = @odp.like
+    @odpid = @odp.id
+    # END OF FOR JQUERY
+    
+    respond_to do |format|
+      format.html { redirect_to question_path(@odp.question_id) }
+      format.js
+    end
+    
   end
   
   def accept

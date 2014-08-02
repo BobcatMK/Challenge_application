@@ -1,23 +1,19 @@
 .answer id="answer-#{answer.id}"
-  .contents= answer.contents
+  .contents= markdown(answer.contents)
   .details
     '  Answered on
     = l(answer.created_at, format: :long)
     '  by
     = link_to answer.user.name, user_path(answer.user)
-  div = "Number of likes: #{answer.like}" 
   
-  /div = @question.inspect
-  /div = answer.inspect
-  /= @question.answers.inspect	
+  div class="number_of_likes-#{answer.id}" = "Number of likes: #{answer.like}" 
   
   - @all_likeit = Likeit.all.where(:answer_id => answer.id)
-  /div = @all_likeit.inspect
   
   - if @all_likeit.any? { |item| item.user_id == current_user.id }
   		div You already like it
   - else @all_likeit.all? { |item| item.user_id != current_user.id }
-  		div = link_to("LIKE IT", adding_likes_path(answer.id,answer.like,current_user.id))  
+  		div = link_to("LIKE IT", adding_likes_path(answer.id,answer.like,current_user.id),class: "ans-#{answer.id}",remote: true)  
   
   - if current_user.id == @question.user_id
   	- if @all_answers.all? { |ans| ans.accepted == 0 }

@@ -8,6 +8,7 @@ gem 'paperclip', "~> 4.1"
 gem 'sidekiq'
 gem 'redcarpet'
 gem 'omniauth-github'
+gem 'figaro'
 
 # frontend
 gem 'slim-rails'

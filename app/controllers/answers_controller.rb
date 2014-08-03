@@ -20,14 +20,14 @@ class AnswersController < ApplicationController
 
   def adding_likes
     @odp = Answer.find(params[:id])
-    @user_id = @odp.user_id
     @odp.update(:like => (params[:like].to_i + 1))
     @likeit = Likeit.new(:answer_id => params[:id],:user_id => params[:current_user_id])
     @likeit.save
     
+    @user_id = @odp.user_id
     @user = User.find(@user_id)
     @user_points = @user.points
-    @user.update(:points => @user_points + 5 )
+    @user.update(:points => @user_points + 5)
     
     # FOR JQUERY
     @odp2 = @odp.like

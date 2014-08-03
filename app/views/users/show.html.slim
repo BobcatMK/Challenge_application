@@ -1,27 +1,47 @@
-.user id="user-#{@user.id}"
-  h2= @user.name
-  
-  div = image_tag(@user.avatar.url(:small))
-  
-  - if @user.points >= 1000
-	  	div THIS USER HAS SUPERSTAR BADGE!
-	  	div = "This user has #{@user.points} points!"
-	  	= image_tag("superbadge.jpeg",:alt => "picture",size: "100x100")
+.user id="user-#{@user.id}" 
+  div style="border-bottom:1px solid black; width: 15%;"
+  	table
+  		tr
+  			td
+				  h2 = "Name: #{@user.name}"
+				  
+				  -if @user.avatar_file_name
+				  	div = image_tag(@user.avatar.url(:small))
+				  -else
+				  	p 
+				  		b Image:
+				  	div No image added
+				
+				  - if @user.points >= 1000
+					  	div THIS USER HAS SUPERSTAR BADGE!
+					  	
+					  	= image_tag("superbadge.jpeg",:alt => "picture",size: "100x100")
+				  
+				  p 
+				  	b Points:
+				  
+				  div = "This user has #{@user.points} points!"
 
+  br
+	  	
   .questions
-    h3 Questions
+    h3 Questions created by user:
 
     - if @user.questions.any?
-      - @user.questions.each do |question|
-        = render 'question', question: question
+    	table
+	      - @user.questions.each do |question|
+	      	tr
+	        	td style="border-bottom: 1px dotted black;" = render 'question', question: question
     - else
       '  This user has not created any questions.
 
   .answers
-    h3 Answers
+    h3 Answers created by user:
 
     - if @user.answers.any?
-      - @user.answers.each do |answer|
-        = render 'answer', answer: answer
+     	table
+	      - @user.answers.each do |answer|
+	      	tr
+	        	td style="border-bottom: 1px dotted black;" = render 'answer', answer: answer
     - else
       '  This user has not added any answers.

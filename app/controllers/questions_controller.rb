@@ -25,8 +25,9 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.user = current_user
     
-    @points = current_user.points
-    current_user.update(:points => @points - 10)
+    @uuu = User.find(@question.user)
+    @current_points = @uuu.points
+    @uuu.update(:points => @current_points - 10)
 
     if @question.save
       redirect_to @question, notice: 'Question was successfully created.'

@@ -6,12 +6,13 @@
   p
     = markdown(@question.contents)
     
-  -if current_user.id == @question.user_id
-  	  -@all_answers = @question.answers
-	  .links
-	    = link_to 'Edit', edit_question_path(@question)
-	    '  |
-	    = link_to 'Delete', question_path(@question, method: :delete)
+  -if current_user   
+	  -if current_user.id == @question.user_id
+	  	  -@all_answers = @question.answers
+		  .links
+		    = link_to 'Edit', edit_question_path(@question)
+		    '  |
+		    = link_to 'Delete', question_path(@question, method: :delete)
 
   h3 Answers	
 
@@ -28,15 +29,22 @@
       ul
         - @answer.errors.full_messages.each do |message|
           li = message
-
-  - if @question.answers.all? { |item| item.accepted == 0 }
-	  = form_for([@question, @answer])  do |f|
+          
+  - if current_user
+	  - if @question.answers.all? { |item| item.accepted == 0 }
+		  = form_for([@question, @answer])  do |f|
+		
+		    .field
+		      = f.label :contents
+		      = f.text_area :contents
 	
-	    .field
-	      = f.label :contents
-	      = f.text_area :contents
+	    	.actions= f.submit 'Save'
+  - else
+      div Hello visitor, sign up if you want to add answers!
+  
+  - if current_user
+	  - if @question.answers.any? { |item| item.accepted == 1 }
+	   		div This question was already fully answered.
 
-    	.actions= f.submit 'Save'
-    	
-  - if @question.answers.any? { |item| item.accepted == 1 }
-   		div This question was already fully answered.
+
+

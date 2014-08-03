@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :validatable, :omniauthable
   has_attached_file :avatar, :styles => { :small => "100x100>" }
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_presence_of :name
   
   # has_attached_file :superstarbadge, :styles => { :small => "100x100>" } 
   # validates_attachment_content_type :superstarbadge, :content_type => /\Aimage\/.*\Z/

@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 # core
 gem 'rails', '4.1.1'
-gem 'sqlite3'
 gem 'devise'
 gem 'paperclip', "~> 4.1"
 gem 'sidekiq'
@@ -25,6 +24,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # development
 group :development do
   gem 'spring'
+  gem 'sqlite3'
 end
 
 # production

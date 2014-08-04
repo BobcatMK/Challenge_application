@@ -8,6 +8,7 @@ gem 'sidekiq'
 gem 'redcarpet'
 gem 'omniauth-github'
 gem 'figaro'
+gem 'redis'
 
 # frontend
 gem 'slim-rails'

@@ -10,6 +10,7 @@ gem 'sidekiq'
 gem 'redcarpet'
 gem 'omniauth-github'
 gem 'figaro'
+gem 'unicorn'
 
 # frontend
 gem 'slim-rails'
@@ -33,7 +34,6 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'thin'
 end
 
 # testing

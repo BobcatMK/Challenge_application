@@ -1,2 +1,2 @@
-uri = URI.parse(ENV["lol"])
-REDIS = Redis.new(:url => ENV["lol"])
+uri = URI.parse(ENV["REDISTOGO_URL"])
+REDIS = Redis.new(:url => ENV["REDISTOGO_URL"])

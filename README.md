@@ -12,7 +12,6 @@ Application is using Unicorn server.
 http://pseudostackoverflow.herokuapp.com/
 
 Feel free to test it.
-
 ================================
 DEVELOPMENT INSTALLATION GUIDE:
 
@@ -34,6 +33,7 @@ LOCALHOST WITH UNICORN SERVER:
 7.In termial run command "rails generate figaro:install"<br>
 8.Go to file /config/application.yml and open it<br>
   Inside file add environment variables for:<br>
+  
 	heroku_github_key: "HERE"
 	heroku_github_secret: "HERE"
 	gmail_user: "HERE"

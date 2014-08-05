@@ -1,5 +1,5 @@
 This is project made for internship program at Monterail company.
-It's based on application cloned from this github link: 
+It's based on skeleton cloned from this github link: 
 
 https://github.com/hussar-academy/challenge_app
 

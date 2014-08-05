@@ -21,43 +21,70 @@ IMPORTANT: In localhost-development mode this application can be run both with U
 LOCALHOST WITH UNICORN SERVER:
 
 1.Turn on terminal and "cd" your way to folder where you want to copy this application.
+
 2.Inside terminal type "git clone git@github.com:BobcatMK/Challenge_application.git"
+
 3.Inside terminal type "cd Challenge_application"
+
 4.Now type "bundle install"
+
 5.Run "rake db:migrate"
+
 6.Go to config/initializers/redis.rb and COMMENT whole file like this:
+
 	#uri = URI.parse(ENV["REDISTOGO_URL"])
+	
 	#REDIS = Redis.new(:url => ENV["REDISTOGO_URL"])
+	
 7.In termial run command "rails generate figaro:install"
+
 8.Go to file /config/application.yml and open it
+
   Inside file add environment variables for:
 	heroku_github_key: "HERE"
 	heroku_github_secret: "HERE"
 	gmail_user: "HERE"
 	gmail_password: "HERE"
+	
 9.In terminal run: "gem install foreman" (DON'T INCLUDE IT IN GEMFILE!)
+
 10."foreman start"
 
 LOCALHOST WITH WEBrick SERVER:
 
 1.Turn on terminal and "cd" your way to folder where you want to copy this application.
+
 2.Inside terminal type "git clone git@github.com:BobcatMK/Challenge_application.git"
+
 3.Inside terminal type "cd Challenge_application"
+
 4.Now type "bundle install"
+
 5.Run "rake db:migrate"
+
 6.Go to config/initializers/redis.rb and COMMENT whole file like this:
+
 	#uri = URI.parse(ENV["REDISTOGO_URL"])
+	
 	#REDIS = Redis.new(:url => ENV["REDISTOGO_URL"])
+	
 7.In termial run command "rails generate figaro:install"
+
 8.Go to file /config/application.yml and open it
+
  Inside file add environment variables for:
+ 
 	heroku_github_key: "HERE"
 	heroku_github_secret: "HERE"
 	gmail_user: "HERE"
 	gmail_password: "HERE"
+	
 9.Go to http://redis.io/ and install redis server.
+
 10.Open two new terminals and type "redis-server" - in first
+
 11.In second navigate to this application and type: "bundle exec sidekiq"
+
 12.Now go to your original terminal and run "rails s"
 
 

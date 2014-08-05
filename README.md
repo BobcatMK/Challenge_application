@@ -26,7 +26,6 @@ LOCALHOST WITH UNICORN SERVER:
 6.Go to config/initializers/redis.rb and COMMENT whole file like this:<br>
 
 	#uri = URI.parse(ENV["REDISTOGO_URL"])
-	
 	#REDIS = Redis.new(:url => ENV["REDISTOGO_URL"])
 	
 7.In termial run command "rails generate figaro:install"<br>

@@ -20,8 +20,9 @@ IMPORTANT: In localhost-development mode this application can be run both with U
 
 LOCALHOST WITH UNICORN SERVER:
 
-1.Turn on terminal and "cd" your way to folder where you want to copy this application.
+1.Turn on terminal and "cd" your way to folder where you want to copy this application.<br>
 2.Inside terminal type "git clone git@github.com:BobcatMK/Challenge_application.git"
+
 3.Inside terminal type "cd Challenge_application"
 
 4.Now type "bundle install"

@@ -1,5 +1,5 @@
-worker_processes 3
-#worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+#worker_processes 3
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true
 

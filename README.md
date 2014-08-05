@@ -11,7 +11,7 @@ Application is using Unicorn server.
 
 http://pseudostackoverflow.herokuapp.com/
 
-Feel free to test it.<br>
+Feel free to test it.<br><br>
 DEVELOPMENT INSTALLATION GUIDE:
 
 IMPORTANT: In localhost-development mode this application can be run both with Unicorn and WEBrick servers.
